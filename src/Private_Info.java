@@ -9,8 +9,8 @@ public class Private_Info extends PasswordHasher{
     private String iin1 = "123456789012";
     private String login;
     private String pass;
-    private static final String DB_USERNAME = "postgres"; // your username
-    private static final String DB_PASSWORD = "Kazakhstan2005"; // your password
+    private static final String DB_USERNAME = "postgres";
+    private static final String DB_PASSWORD = "Kazakhstan2005";
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/logpass";
     Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME,DB_PASSWORD);
     protected String password = hashPassword(pass1);

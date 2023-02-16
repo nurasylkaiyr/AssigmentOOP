@@ -3,7 +3,7 @@ import java.security.MessageDigest;
 public class PasswordHasher {
     public static String hashPassword(String password) {
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             byte[] hash = messageDigest.digest(password.getBytes("UTF-8"));
             StringBuilder hexString = new StringBuilder();
 

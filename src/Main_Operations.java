@@ -6,6 +6,7 @@ public class Main_Operations{
     public boolean isTrue;
     public int count;
     RunTimer time = new RunTimer(isTrue, count);
+    UserInputHandler userInputHandler = new UserInputHandler();
 
     public Main_Operations(boolean isTrue, int count) throws SQLException {
         this.isTrue = isTrue;
@@ -13,13 +14,8 @@ public class Main_Operations{
     }
     public void call_op(boolean isTrue, int count) throws SQLException, NoSuchAlgorithmException {
         while (!isTrue){
-
-            System.out.print("Username or IIN: ");
-            Scanner log = new Scanner(System.in);
-            String login = log.nextLine();
-            System.out.print("Password: ");
-            Scanner pas = new Scanner(System.in);
-            String pass = pas.nextLine();
+            String login = userInputHandler.getLogin();
+            String pass = userInputHandler.getPassword();
             CheckInfo CheckInfo = new CheckInfo(login, pass);
             CheckFunct CheckFunctionality = new CheckFunct(login, pass);
             if(!CheckFunctionality.checklogin(login)){
@@ -29,7 +25,7 @@ public class Main_Operations{
                 if(CheckFunctionality.checklength(pass)){
                 }
                 else {
-                    if (CheckInfo.checkinf()) {
+                    if (CheckInfo.data_check()) {
 
                         isTrue = true;
                     } else {

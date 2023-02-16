@@ -15,7 +15,7 @@ public class CheckInfo extends Private_Info{
         preparedStatement.setString(3, getIin1());
         preparedStatement.executeUpdate();
     }
-    public boolean checkinf() throws SQLException, NoSuchAlgorithmException {
+    public boolean data_check() throws SQLException, NoSuchAlgorithmException {
 
         boolean iin2 = this.getLogin().equals(this.getIin1());
         boolean login2 = this.getLogin().equals(this.getLogin1());
