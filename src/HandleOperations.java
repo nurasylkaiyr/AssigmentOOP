@@ -1,14 +1,17 @@
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.util.Scanner;
 
-public class Main_Operations{
+public class HandleOperations{
     public boolean isTrue;
     public int count;
     RunTimer time = new RunTimer(isTrue, count);
     UserInputHandler userInputHandler = new UserInputHandler();
+    public HandleOperations()
+    {
 
-    public Main_Operations(boolean isTrue, int count) throws SQLException {
+    }
+
+    public HandleOperations(boolean isTrue, int count) throws SQLException {
         this.isTrue = isTrue;
         this.count = count;
     }
@@ -26,7 +29,6 @@ public class Main_Operations{
                 }
                 else {
                     if (CheckInfo.data_check()) {
-
                         isTrue = true;
                     } else {
                         count++;
