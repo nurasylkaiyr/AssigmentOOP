@@ -1,4 +1,4 @@
-public class HandleAuth {
+public class HandleAuth implements IHandleAuth{
     private String login;
     public int count;
     public int count2;

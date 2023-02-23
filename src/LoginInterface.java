@@ -24,7 +24,7 @@ public class LoginInterface extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 try {
                     handlelogin();
-                } catch (SQLException ex) {
+                } catch (SQLException | InterruptedException ex) {
                     throw new RuntimeException(ex);
                 } catch (NoSuchAlgorithmException ex) {
                     throw new RuntimeException(ex);
@@ -34,29 +34,35 @@ public class LoginInterface extends JDialog{
         setVisible(true);
     }
 
-    private void handlelogin() throws SQLException, NoSuchAlgorithmException {
+    private void handlelogin() throws SQLException, NoSuchAlgorithmException, InterruptedException {
         String login = textField1.getText();
         String pass = new String(passwordField1.getPassword());
         CheckInfo CheckInfo = new CheckInfo(login, pass);
         CheckFunct CheckFunct = new CheckFunct(login, pass);
-        HandleOperations handleOp = new HandleOperations();
-        if(!CheckFunct.checklogin(login)){JOptionPane.showMessageDialog(frame, "Login must contain uppercase and lowercase letter, please try again.", "Error", JOptionPane.ERROR_MESSAGE);}
-        else if(CheckFunct.checklength(pass)){JOptionPane.showMessageDialog(frame, "Password must be at least 6, please try again.", "Error", JOptionPane.ERROR_MESSAGE);}
-        else{
-            if (CheckInfo.data_check()) {
+        if(!CheckFunct.checklogin(login)){
+            JOptionPane.showMessageDialog(frame, "Login must contain uppercase and lowercase letter, please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(CheckFunct.checklength(pass)){
+            JOptionPane.showMessageDialog(frame, "Password must be at least 6, please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (CheckInfo.data_check()) {
                 JOptionPane.showMessageDialog(frame, "Login successful!");
             }
-            else {
-                boolean i = true;
-                int k = 0;
-                JOptionPane.showMessageDialog(frame, "Invalid data, please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(frame, "You have been blocked for 30 seconds.", "Error", JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(frame, "You have been blocked for 60 seconds.", "Error", JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(frame, "You have been blocked for 300 seconds.", "Error", JOptionPane.ERROR_MESSAGE);
+        else{
+            JOptionPane.showMessageDialog(frame, "Invalid data, please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 
-            }
+//            JOptionPane.showMessageDialog(frame, "You have been blocked for 30 seconds.", "Error", JOptionPane.ERROR_MESSAGE);
+//            Thread.sleep(30000);
+//
+//            JOptionPane.showMessageDialog(frame, "You have been blocked for 60 seconds.", "Error", JOptionPane.ERROR_MESSAGE);
+//            Thread.sleep(60000);
+//
+//            JOptionPane.showMessageDialog(frame, "You have been blocked for 300 seconds.", "Error", JOptionPane.ERROR_MESSAGE);
+//            Thread.sleep(300000);
         }
     }
+
+
 
     public static void main(String[] args){
         LoginInterface myGUI = new LoginInterface(null);
